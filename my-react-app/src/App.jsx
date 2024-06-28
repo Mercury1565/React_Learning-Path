@@ -1,23 +1,17 @@
-import Card from "./components/Card.jsx"
+import Greeting from "./components/Greeting.jsx"
 
+// conditional rendering 
 /*
-PROPS: this is a way we can make parent components send data to 
-child components to alter the results. For instance, we can have a 
-card component that accepts some parameter and depending on this
-paramter it will feature different properties. This is demonstrated
-in this project
-
-Notice that the parent component, for this case the App() component
-is sending props to the child component, here the Card() component
-data in the form of key value pairs.
+We use conditional rendering to entitle the parent component to chose whether to
+display a component or not and how to display that component. Hence, based on the 
+prop argument the parent component sends to the child component, we can determine 
+weather to display a component or not
 */
 
 function App() {
   return(
     <>
-    <Card name="Hermon" age={21} dept='Electrical' is_GC={false}/>
-    <Card name='Beamlak' age={24} dept='CS' is_GC={true}/>
-    <Card />
+    <Greeting isLoggedIn={true} username="Hermon"/> 
     </>
   )
 }
