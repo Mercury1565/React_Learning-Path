@@ -1,38 +1,55 @@
 import React, {useState} from 'react'
 
 function MyComponent(){
-    const [car , setCar] = useState({year:2010, make:'Ford', model:'F150'})
+    const [foods , setFoods] = useState(['Apple', 'Orange'])
 
-    function handelYearChange(event){
+    /*
+    - What is happening when a new food is added is the button click will trigger
+      the addition of food with the name written on the input field...but will
+      we get the value in the input element from another element...USING IDS
+
+    */
+
+    function handelAddFood(){
+        const newFood = document.getElementById("foodInput").value;
+        document.getElementById("foodInput").value = '';
+
+        // Use update functions for best practice
+        setFoods(f => [...foods , newFood])
+    }
+
+    function handelRemoveFood(index){
+        // A great use for the filter method !!!
         /*
-        - For best practice, use updater functions. They are safer
-
-        - And to allow object assignements in updater funcitons, you apparantly 
-          have to enclose the curly braces holding the object with a brace ()
-
-        - Notice how you isolte the an attribute to change it and leave
-          every other attribute unchanged {...c, year: event.target.value}
-                                            ^ [This thingy over here]
+        The filter method in JavaScript is used to create a new array that 
+        contains all elements of the original array that meet a specified 
+        condition. The condition is specified using a callback function or
+        an arrow function, which you will use now
         */
-        setCar(c => ({...c, year: event.target.value}))
-    }
 
-    function handelModelChange(event){
-        setCar(c => ({...c, model: event.target.value}))
-    }
-
-    function handelMakeChange(event){
-        setCar(c => ({...c, make: event.target.value}))
+        setFoods(foods.filter((food, i) => i !== index));
     }
 
 
     return(
         <div>
-            <p> Your Car is: {car.year} {car.make} {car.model}</p>
+            <h1> List of Foods</h1>
 
-            <input type='number' value={car.year} onChange={handelYearChange}/> <br/>
-            <input type='text' value={car.make} onChange={handelMakeChange}/> <br/> 
-            <input type='text' value={car.model} onChange={handelModelChange}/>
+            <ul>
+                {foods.map((food, index) => 
+                <div key={index}>
+                    <li>
+                        {food}
+                        <button onClick={() => handelRemoveFood(index)}>
+                            Remove Food
+                        </button>
+                    </li>
+                </div>)
+                }
+            </ul>
+
+            <input type='text' id='foodInput' placeholder='enter food'/>
+            <button onClick={handelAddFood}>Add Food</button>
         
         </div>
     )
