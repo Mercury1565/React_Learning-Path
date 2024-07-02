@@ -1,12 +1,13 @@
-import Button from "./components/Button.jsx"
-import ImageButton from "./components/ImageButton.jsx"
+import MyComponent from "./components/MyComponent.jsx"
+import Counter from "./components/Counter.jsx"
 
 
 function App() {
   return(
     <>
-    <Button/>
-    <ImageButton/>
+    {/* <MyComponent/> */}
+    <Counter/>
+
     </>
   )
 }
