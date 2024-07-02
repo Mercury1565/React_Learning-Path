@@ -1,12 +1,9 @@
-import MyComponent from "./components/MyComponent.jsx"
-import Counter from "./components/Counter.jsx"
-
+import ColorPicker from "./components/ColorPicker.jsx"
 
 function App() {
   return(
     <>
-    {/* <MyComponent/> */}
-    <Counter/>
+    <ColorPicker/>
 
     </>
   )
