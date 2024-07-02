@@ -1,58 +1,81 @@
 import React, {useState} from 'react'
 
 function MyComponent(){
-    const [foods , setFoods] = useState(['Apple', 'Orange'])
+    const [cars, setCars] = useState([])
 
-    /*
-    - What is happening when a new food is added is the button click will trigger
-      the addition of food with the name written on the input field...but will
-      we get the value in the input element from another element...USING IDS
+    const [carYear, setCarYear] = useState(new Date().getFullYear());
+    const [carMake, setCarMake] = useState("");
+    const [carModel, setCarModel] = useState("");
 
-    */
+    function handelAddCar(){
+        // Use updater function for best practice
+        setCars(c => [...cars , {
+            year: carYear,
+            make: carMake,
+            model: carModel
+        }]);
 
-    function handelAddFood(){
-        const newFood = document.getElementById("foodInput").value;
-        document.getElementById("foodInput").value = '';
-
-        // Use update functions for best practice
-        setFoods(f => [...foods , newFood])
+        //Reset to default
+        setCarYear(new Date().getFullYear());
+        setCarMake('');
+        setCarModel('');
     }
 
-    function handelRemoveFood(index){
-        // A great use for the filter method !!!
-        /*
-        The filter method in JavaScript is used to create a new array that 
-        contains all elements of the original array that meet a specified 
-        condition. The condition is specified using a callback function or
-        an arrow function, which you will use now
-        */
-
-        setFoods(foods.filter((food, i) => i !== index));
+    function handelRemoveCar(index){
+        setCars(c => cars.filter((car, i) => index !== i))        
     }
 
+    function handelYearChange(event){
+        setCarYear(event.target.value)
+    }
+
+    function handelMakeChange(event){
+        setCarMake(event.target.value)
+    }
+
+    function handelModelChange(event){
+        setCarModel(event.target.value)
+    }
 
     return(
         <div>
-            <h1> List of Foods</h1>
+            <h1> List of car objects </h1>
 
             <ul>
-                {foods.map((food, index) => 
-                <div key={index}>
-                    <li>
-                        {food}
-                        <button onClick={() => handelRemoveFood(index)}>
-                            Remove Food
-                        </button>
-                    </li>
-                </div>)
-                }
+                {cars.map((car, index) => 
+                    <div key={index}>
+                        <li>
+                            {car.year} {car.make} {car.model}
+                            <button onClick={() => handelRemoveCar(index)}>
+                                Remove car
+                            </button>
+                        </li>
+                    </div>)
+                }       
             </ul>
 
-            <input type='text' id='foodInput' placeholder='enter food'/>
-            <button onClick={handelAddFood}>Add Food</button>
-        
+
+            <input 
+                type='number' 
+                value={carYear} 
+                placeholder='enter car year'
+                onChange={handelYearChange}
+            />
+            <input 
+                type='text' 
+                value={carMake} 
+                placeholder='enter car make'
+                onChange={handelMakeChange}
+            />
+            <input 
+                type='text' 
+                value={carModel} 
+                placeholder='enter car model'
+                onChange={handelModelChange}
+            />
+            <button onClick={handelAddCar}> Add Car </button>
         </div>
-    )
+    );
 }
 
 export default MyComponent
