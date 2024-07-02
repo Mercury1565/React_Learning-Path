@@ -1,13 +1,12 @@
-import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
-import Food from './components/Food.jsx';
+import Button from "./components/Button.jsx"
+import ImageButton from "./components/ImageButton.jsx"
+
 
 function App() {
   return(
     <>
-    <Header/>
-    <Food/>
-    <Footer/>
+    <Button/>
+    <ImageButton/>
     </>
   )
 }
