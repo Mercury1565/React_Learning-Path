@@ -1,11 +1,11 @@
-import ComponentA from "./components/ComponentA.jsx"
+import Component from "./components/Component.jsx"
 
 function App() {
 
   return(
     <>
-    
-    <ComponentA/> 
+
+    <Component/> 
 
     </>
   )
