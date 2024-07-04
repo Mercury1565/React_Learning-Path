@@ -1,9 +1,11 @@
-import Component from "./components/Component.jsx"
+import StopWatch from "./components/StopWatch.jsx"
 
 function App() {
 
   return(
     <>
+
+    <StopWatch/> 
     <Component/> 
     <Counter/>
     </>
