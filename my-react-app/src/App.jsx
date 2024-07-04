@@ -1,8 +1,10 @@
-import Counter from "./components/Counter.jsx"
+import Component from "./components/Component.jsx"
 
 function App() {
+
   return(
     <>
+    <Component/> 
     <Counter/>
     </>
   )
